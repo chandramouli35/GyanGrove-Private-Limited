@@ -82,8 +82,8 @@ const Events = () => {
 
   const reduceEventName = (eventName) => {
     const parts = eventName.split(" ");
-    if (parts.length >= 3) {
-      return parts.slice(0, 3).join(" ");
+    if (parts.length >= 2) {
+      return parts.slice(0, 2).join(" ");
     } else {
       return eventName;
     }

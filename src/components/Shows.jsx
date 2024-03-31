@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import arrow from "../assets/right.png";
 import axios from "axios";
 import location from "../assets/location.png";
@@ -66,12 +66,12 @@ const Shows = () => {
     return `${year}-${month}-${day}`;
   };
 
-  // function to meters to kilometers
+  // Function to convert meters to kilometers
   const convertToKilometers = (distanceInMeters) => {
     return (distanceInMeters / 1000).toFixed(2);
   };
 
-//function to reduce event name to the second space
+  // Function to reduce event name to the second space
   const reduceEventName = (eventName) => {
     const parts = eventName.split(' ');
     if (parts.length >= 3) {
@@ -79,50 +79,48 @@ const Shows = () => {
     } else {
         return eventName;
     }
-};
+  };
 
   return (
     <div>
       <div className="flex items-center justify-between font-semibold">
         <div className="flex items-center gap-3 ps-5">
-        Recommended shows
-        <img src={arrow} alt="arrow-icon" className="w-4 h-4" />
+          Recommended shows
+          <img src={arrow} alt="arrow-icon" className="w-4 h-4" />
         </div>
         <div className="underline">
-            See all
+          See all
         </div>
       </div>
 
       <Slider {...settings}>
-      {show.map((item, index) => (
-        <div key={index}>
-          <div className="relative mt-5 max-[480px]:w-72">
-            <img
-              src={`https://drive.google.com/thumbnail?id=${fileIds[index]}&sz=w1000`}
-              alt={`event${index}`}
-              className="w-72"
-            />
-            <div className="w-64 absolute z-30 text-white bottom-7 text-sm ps-7">
-              <div className="flex justify-between pe-5">
-                <div>{reduceEventName(item.eventName)}</div>
-                <div>{formatDate(item.date)}</div>
-              </div>
-              <div className="flex gap-1">
-                <div className="flex items-center gap-1">
-                  <img src={location} alt="venue" className="w-3 h-3 grayscale invert" />
-                  {item.cityName}
+        {show.map((item, index) => (
+          <div key={index}>
+            <div className="relative mt-5 max-[480px]:w-72">
+              <img
+                src={`https://drive.google.com/thumbnail?id=${fileIds[index]}&sz=w1000`}
+                alt={`event${index}`}
+                className="w-72"
+              />
+              <div className="w-64 absolute z-30 text-white bottom-7 text-sm ps-7">
+                <div className="flex justify-between pe-5">
+                  <div>{reduceEventName(item.eventName)}</div>
+                  <div>{formatDate(item.date)}</div>
                 </div>
-                <div className="flex gap-2">
-                <div>{item.weather}</div>|
-                <div>{convertToKilometers(item.distanceKm)} Km</div>
+                <div className="flex gap-1">
+                  <div className="flex items-center gap-1">
+                    <img src={location} alt="venue" className="w-3 h-3 grayscale invert" />
+                    {item.cityName}
+                  </div>
+                  <div className="flex gap-2">
+                    <div>{item.weather}</div>|
+                    <div>{convertToKilometers(item.distanceKm)} Km</div>
+                  </div>
                 </div>
-                
-                
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
       </Slider>
     </div>
   );
